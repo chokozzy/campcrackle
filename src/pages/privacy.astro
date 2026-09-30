@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+---
+<Base title="Privacy Policy" description="How CampCrackle handles your data.">
+  <article>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: October 1, 2026</p>
+    <h2>What we collect</h2>
+    <p>CampCrackle does not ask you to create an account and does not collect personal information directly. If you email us, we use your address only to reply.</p>
+    <h2>Affiliate links and cookies</h2>
+    <p>CampCrackle is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.</p>
+    <p>When you click an affiliate link, Amazon may place a cookie in your browser to track the referral. That cookie is governed by Amazon's own privacy policy.</p>
+    <h2>Third-party services</h2>
+    <p>This site is hosted on Cloudflare and loads fonts from Google Fonts. These providers may log technical data such as your IP address to deliver the site. If we add analytics in the future, this page will be updated.</p>
+    <h2>Contact</h2>
+    <p>Questions about this policy: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+  </article>
+</Base>

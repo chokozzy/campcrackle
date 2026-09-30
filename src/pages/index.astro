@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+const modules = import.meta.glob('./*.md', { eager: true });
+const posts = Object.entries(modules)
+  .map(([path, mod]) => ({ url: path.replace('./', '/').replace('.md', ''), ...mod.frontmatter }))
+  .sort((a, b) => new Date(b.date) - new Date(a.date));
+---
+<Base>
+  <section class="hero">
+    <div class="hero-mark">
+      <h1>{SITE.name}</h1>
+      <svg class="sparks" viewBox="0 0 40 60" aria-hidden="true">
+        <circle cx="10" cy="14" r="3" />
+        <circle cx="26" cy="6" r="2.2" />
+        <circle cx="22" cy="26" r="2.6" />
+        <circle class="coal" cx="18" cy="50" r="8" />
+      </svg>
+    </div>
+    <p>{SITE.tagline}</p>
+  </section>
+  <ul class="posts">
+    {posts.map((p) => (
+      <li>
+        <a href={p.url}>{p.title}</a>
+        <p>{p.description}</p>
+      </li>
+    ))}
+  </ul>
+</Base>

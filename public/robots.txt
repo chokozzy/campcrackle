@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://campcrackle.com/sitemap-index.xml
