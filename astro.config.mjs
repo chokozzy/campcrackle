@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 // Marca los enlaces de afiliado como exige Google y los abre en otra pestaña.
@@ -14,6 +15,7 @@ function affiliateLinks() {
   return () => (tree) => walk(tree);
 }
 
+// Para artículos en Markdown simple (los .mdx usan <ProductCard>).
 // Envuelve cada producto (un h3 y lo que le sigue hasta el próximo título) en
 // <section class="product"> para darle estilo de tarjeta. Solo aplica si el
 // bloque contiene un enlace de afiliado, así que debe ir después de affiliateLinks.
@@ -45,6 +47,6 @@ function productCards() {
 
 export default defineConfig({
   site: 'https://campcrackle.com',
-  integrations: [sitemap()],
+  integrations: [mdx(), sitemap()],
   markdown: { rehypePlugins: [affiliateLinks(), productCards()] },
 });

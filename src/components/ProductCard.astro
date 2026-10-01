@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import { PRODUCT_ICONS, type ProductIconName } from './product-icons';
+
+interface Props {
+  name: string;
+  icon: ProductIconName;
+  badge?: string;
+  bestFor?: string;
+  highlights?: string[];
+  links: { label: string; url: string }[];
+  /** Your own photo (imported from src/assets). Replaces the illustration. Never an Amazon or manufacturer image. */
+  image?: ImageMetadata;
+  imageAlt?: string;
+  /** Smaller stacked card, for use inside <ProductGrid>. */
+  compact?: boolean;
+}
+
+const { name, icon, badge, bestFor, highlights = [], links, image, imageAlt = '', compact = false } = Astro.props;
+if (!(icon in PRODUCT_ICONS)) throw new Error(`ProductCard "${name}": unknown icon "${icon}"`);
+const id = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+---
+<section class:list={['pcard', { 'pcard--compact': compact, 'pcard--badge': badge }]} aria-labelledby={id}>
+  <div class="pcard-media">
+    {image ? (
+      <Image src={image} alt={imageAlt} widths={[160, 320, 480]} sizes="10rem" />
+    ) : (
+      <svg viewBox="0 0 96 96" aria-hidden="true" set:html={PRODUCT_ICONS[icon]} />
+    )}
+  </div>
+  {badge && <p class="pcard-badge">{badge}</p>}
+  <div class="pcard-body">
+    <h3 id={id}>{name}</h3>
+    {bestFor && <p class="pcard-best"><strong>Best for:</strong> {bestFor}</p>}
+    {highlights.length > 0 && (
+      <ul class="pcard-chips" aria-label="Highlights">
+        {highlights.map((h) => <li>{h}</li>)}
+      </ul>
+    )}
+    <div class="pcard-text"><slot /></div>
+    <p class="pcard-links">
+      {links.map((link) => (
+        // Affiliate links: rel is set here because the rehype plugin does not see component props.
+        <a href={link.url} rel="sponsored nofollow noopener" target="_blank">
+          {link.label}<span class="visually-hidden">: {name}</span>
+        </a>
+      ))}
+    </p>
+  </div>
+</section>

@@ -37,7 +37,7 @@ Desde ahí, cada `git push` a `main` publica los cambios solo.
 
 ## Cuando te aprueben en Amazon Associates
 
-En `src/content/posts/gifts-for-truck-campers.md` reemplaza cada `https://amzn.to/REPLACE-N` por tu enlace de SiteStripe. Los enlaces de Amazon se marcan solos como `sponsored nofollow` y se muestran como botón.
+En `src/content/posts/gifts-for-truck-campers.mdx` reemplaza cada `https://amzn.to/REPLACE-N` por tu enlace de SiteStripe. Los enlaces de Amazon se marcan solos como `sponsored nofollow` y se muestran como botón.
 
 ## Cuando reclames el sitio en Pinterest
 
@@ -51,7 +51,7 @@ Copia solo el valor de `content` en `pinterestVerify` dentro de `src/config.ts`,
 
 ## Agregar un artículo nuevo
 
-Crea `src/content/posts/nombre-del-articulo.md` (el nombre del archivo es la URL) con este encabezado:
+Crea `src/content/posts/nombre-del-articulo.mdx` (o `.md`; el nombre del archivo es la URL) con este encabezado:
 
 ```yaml
 ---
@@ -68,7 +68,32 @@ Aparece solo en la portada y en la página de su categoría. Una categoría se m
 
 Las fotos de portada van en `src/assets/`; Astro las convierte a AVIF/WebP en varios tamaños. No uses imágenes de producto de Amazon.
 
-Dentro del artículo, cada producto es un `###` seguido de sus párrafos y el enlace de Amazon: se muestra solo como tarjeta con botón.
+### Tarjetas de producto
+
+Para tarjetas completas (ilustración, insignia, "Best for", etiquetas y botón) el artículo debe ser `.mdx` e importar el componente. Mira `gifts-for-truck-campers.mdx` como ejemplo:
+
+```mdx
+import ProductCard from '../../components/ProductCard.astro';
+
+<ProductCard
+  name="Nombre del producto"
+  icon="stove"
+  badge="Budget Pick"
+  bestFor="Para quién es"
+  highlights={['Dato 1', 'Dato 2']}
+  links={[{ label: 'Check it on Amazon', url: 'https://amzn.to/...' }]}
+>
+  Descripción del producto.
+</ProductCard>
+```
+
+- `icon`: `stove`, `burner`, `kitchen`, `utensils`, `fridge`, `lantern`, `headlamp`, `chair`, `hammock`, `tarp`, `first-aid`, `soap`, `poncho`. Las ilustraciones están en `src/components/product-icons.ts`.
+- `badge`, `bestFor` y `highlights` son opcionales. Pon solo datos que estén en el texto del artículo.
+- `image` (opcional): una foto **tuya** importada desde `src/assets/`; reemplaza la ilustración. Nunca imágenes de Amazon ni del fabricante.
+- `compact` dentro de `<ProductGrid>`: tarjetas pequeñas en 3 columnas.
+- Los enlaces de la tarjeta salen siempre con `rel="sponsored nofollow noopener"`.
+
+En un artículo `.md` simple, cada producto es un `###` seguido de sus párrafos y el enlace de Amazon: se muestra como tarjeta sencilla con botón.
 
 ## Logo y favicons
 

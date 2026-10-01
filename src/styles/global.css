@@ -11,6 +11,7 @@
   --cream: #FBF4EA; /* page ground: a lighter sand, never plain white */
   --ember: #9A3412; /* hover state of campfire-dark */
   --line: #E6D3BB; /* hairlines on sand and cream */
+  --paper: #FFFCF6; /* card surface: warm, slightly lighter than the page */
   --head: 'Poppins', 'Avenir Next', 'Century Gothic', 'Segoe UI', system-ui, sans-serif;
   --body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --radius: 14px;
@@ -40,6 +41,8 @@ a { color: inherit; }
 .on-dark :focus-visible { outline-color: var(--sky); }
 
 .wrap { width: min(100% - 2.5rem, 68rem); margin-inline: auto; }
+
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 
 .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 10; background: var(--forest); color: var(--cream); padding: 0.6rem 1rem; border-radius: 0 0 8px 8px; }
 .skip-link:focus { top: 0; }
@@ -101,38 +104,47 @@ a.label:hover { background: var(--forest); }
 }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; display: grid; align-items: center; min-height: clamp(26rem, 46vw, 38rem); background: var(--forest); color: #fff; isolation: isolate; }
+/* Mobile: at most ~70% of the screen so the first article is close. Grows if the text needs more room. */
+.hero { position: relative; display: grid; align-items: end; min-height: 22rem; min-height: min(70svh, 24rem); background: var(--forest); color: #fff; isolation: isolate; overflow: clip; }
 .hero picture { position: absolute; inset: 0; z-index: -2; }
 .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: 78% 50%; }
-/* Dark gradient on the left keeps the headline readable over the sunset. */
-.hero::before {
-  content: ''; position: absolute; inset: 0; z-index: -1;
-  background:
-    linear-gradient(90deg, rgb(6 26 19 / 0.9) 0%, rgb(6 26 19 / 0.72) 38%, rgb(6 26 19 / 0.2) 68%, rgb(6 26 19 / 0) 85%),
-    linear-gradient(0deg, rgb(6 26 19 / 0.45), rgb(6 26 19 / 0.25));
+/* The overlay is tied to the text block: solid behind the text, fading out above it and
+   (via the mask) to the right, so the sunset sky and the truck keep their colour. */
+.hero-text { position: relative; padding-block: 2.25rem; --dark: 0.58; --fade: 6rem; --solid: 84%; --clear: 116%; }
+.hero-text::before {
+  content: ''; position: absolute; z-index: -1; left: 50%; width: 100vw; translate: -50% 0; bottom: 0; top: calc(-1 * var(--fade));
+  background: linear-gradient(to top,
+    rgb(6 26 19 / var(--dark)) 0, rgb(6 26 19 / var(--dark)) calc(100% - var(--fade)),
+    rgb(6 26 19 / calc(var(--dark) * 0.6)) calc(100% - var(--fade) * 0.6), rgb(6 26 19 / calc(var(--dark) * 0.22)) calc(100% - var(--fade) * 0.25), rgb(6 26 19 / 0) 100%);
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 var(--solid), transparent var(--clear));
+  mask-image: linear-gradient(to right, #000 0, #000 var(--solid), transparent var(--clear));
 }
-.hero-text { padding-block: 3.5rem; }
 .hero h1 { font-size: clamp(2.25rem, 6.2vw, 4rem); max-width: 12ch; text-shadow: 0 2px 18px rgb(0 0 0 / 0.35); }
-.hero p { font-size: clamp(1.1rem, 2.2vw, 1.35rem); max-width: 36ch; margin: 1rem 0 1.75rem; text-shadow: 0 1px 10px rgb(0 0 0 / 0.45); }
+.hero p { font-size: clamp(1.1rem, 2.2vw, 1.35rem); max-width: 36ch; margin: 0.75rem 0 1.5rem; text-shadow: 0 1px 10px rgb(0 0 0 / 0.45); }
 .hero .btn { font-size: 1.05rem; padding: 0.8rem 1.6rem; }
 @media (min-width: 40rem) {
-  .hero::before { background: linear-gradient(90deg, rgb(6 26 19 / 0.88) 0%, rgb(6 26 19 / 0.66) 34%, rgb(6 26 19 / 0.12) 62%, rgb(6 26 19 / 0) 78%); }
+  .hero { min-height: clamp(26rem, 46vw, 38rem); min-height: min(clamp(26rem, 46vw, 38rem), 80svh); }
   .hero-img { object-position: 50% 50%; }
+  .hero-text { padding-block: 3.5rem; --dark: 0.62; --fade: 9rem; --solid: 56%; --clear: 86%; }
+  .hero p { margin: 1rem 0 1.75rem; }
 }
 
 /* ---------- Forest value band ---------- */
-.band { background: var(--forest); color: var(--cream); padding-block: clamp(2.75rem, 6vw, 4.5rem); }
-.band-grid { display: grid; gap: 2.5rem; }
-.band h2 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); color: #fff; }
-.band-intro p { margin: 1rem 0 0; max-width: 34ch; }
-.band-intro::after { content: ''; display: block; width: 4rem; height: 3px; margin-top: 1.5rem; background: var(--campfire); border-radius: 2px; }
-.values { list-style: none; margin: 0; padding: 0; display: grid; gap: 2rem 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); }
-.values li { text-align: center; }
-.values svg { width: 4rem; height: 3rem; fill: none; stroke: var(--cream); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-.values h3 { font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0.75rem 0 0.4rem; color: #fff; }
-.values p { margin: 0 auto; font-size: 0.95rem; line-height: 1.5; max-width: 24ch; color: var(--sand); }
-@media (min-width: 56rem) {
-  .band-grid { grid-template-columns: 5fr 7fr; align-items: center; gap: 4rem; }
+.band { background: var(--forest); color: var(--cream); padding-block: 1.75rem; }
+/* Mobile: one compact column, icon on the left and text on the right. */
+.values { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; }
+.values li { display: grid; grid-template-columns: 2.75rem 1fr; column-gap: 1rem; align-items: center; }
+.values svg { grid-row: span 2; width: 2.75rem; height: 2.1rem; fill: none; stroke: var(--cream); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.values h3 { font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 0.15rem; color: #fff; }
+.values p { margin: 0; font-size: 0.92rem; line-height: 1.45; color: var(--sand); }
+@media (min-width: 40rem) {
+  /* Desktop: three centred columns, as on the brand board. */
+  .band { padding-block: clamp(2.75rem, 5vw, 3.75rem); }
+  .values { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .values li { display: block; text-align: center; }
+  .values svg { width: 4rem; height: 3rem; }
+  .values h3 { font-size: 0.85rem; margin: 0.75rem 0 0.4rem; }
+  .values p { margin: 0 auto; font-size: 0.95rem; line-height: 1.5; max-width: 24ch; }
 }
 
 /* ---------- Sections and cards ---------- */
@@ -200,12 +212,60 @@ a.label:hover { background: var(--forest); }
 .post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin: 1.75rem 0 0; font-size: 0.9rem; color: var(--pine); }
 .disclosure { font-size: 0.9rem; line-height: 1.55; background: var(--sand); border-radius: 10px; padding: 0.85rem 1.1rem; margin-bottom: 2rem; }
 
-/* Product section: h3 + paragraphs + Amazon button, wrapped by the rehype plugin in astro.config.mjs */
+/* Plain Markdown posts: h3 + paragraphs + Amazon button, wrapped by the rehype plugin in astro.config.mjs */
 .product { background: var(--sand); border-left: 5px solid var(--campfire); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.4rem 1.5rem 1.5rem; margin: 1.5rem 0; }
 .product h3 { margin-top: 0; }
 .product > :last-child { margin-bottom: 0; }
 /* Affiliate links inside running text (lists) get a smaller button. */
 .prose li a[rel~="sponsored"] { min-height: 2rem; padding: 0.3rem 0.85rem; font-size: 0.85rem; margin: 0.35rem 0 0 0.15rem; }
+
+/* ---------- Product cards (<ProductCard> in .mdx posts) ---------- */
+.pcard {
+  position: relative; display: grid; gap: 1rem; margin: 1.5rem 0; padding: 1.25rem;
+  background: var(--paper); border: 1px solid var(--line); border-left: 5px solid var(--campfire);
+  border-radius: 0 var(--radius) var(--radius) 0; box-shadow: var(--shadow);
+}
+/* Illustration (or your own photo) on a sand square */
+.pcard-media { width: 6.5rem; aspect-ratio: 1; background: var(--sand); border-radius: 12px; overflow: hidden; display: grid; place-items: center; }
+.pcard-media svg { width: 78%; height: 78%; }
+.pcard-media img { width: 100%; height: 100%; object-fit: cover; }
+.pcard-badge {
+  position: absolute; top: 0; right: 0; margin: 0; padding: 0.5rem 0.9rem;
+  background: var(--campfire-dark); color: #fff; border-radius: 0 var(--radius) 0 var(--radius);
+  font-family: var(--head); font-weight: 700; font-size: 0.72rem; line-height: 1.2; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.pcard-body { min-width: 0; }
+.prose .pcard h3 { margin: 0 0 0.4rem; font-size: 1.2rem; }
+.pcard-best { margin: 0 0 0.7rem; font-size: 0.95rem; line-height: 1.5; color: var(--pine); }
+.pcard-best strong { color: var(--forest); }
+.prose .pcard-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 0.85rem; padding: 0; }
+.prose .pcard-chips li { margin: 0; padding: 0.25rem 0.7rem; background: var(--sand); border-radius: 999px; font-size: 0.82rem; font-weight: 600; line-height: 1.4; }
+.pcard-text { font-size: 1rem; line-height: 1.65; }
+.pcard-text > :last-child { margin-bottom: 0; }
+.pcard-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0 0; }
+@media (min-width: 40rem) {
+  /* Desktop: illustration left, content right */
+  .pcard { grid-template-columns: 8.5rem 1fr; gap: 1.5rem; padding: 1.5rem; }
+  .pcard-media { width: 100%; }
+  .pcard--badge .pcard-body { padding-top: 1.1rem; }
+}
+
+/* Compact cards: always stacked, used in a 3-column grid (1 column on mobile) */
+.pgrid { display: grid; gap: 1rem; margin: 1.5rem 0; }
+.pgrid .pcard { margin: 0; }
+.pcard--compact { grid-template-columns: 4.5rem 1fr; align-items: start; gap: 1rem; padding: 1.1rem; border-left: 1px solid var(--line); border-top: 4px solid var(--campfire); border-radius: 0 0 var(--radius) var(--radius); }
+.pcard--compact .pcard-media { width: 100%; border-radius: 10px; }
+.prose .pcard--compact h3 { font-size: 1.02rem; }
+.pcard--compact .pcard-text { font-size: 0.92rem; line-height: 1.55; }
+.prose .pcard--compact .pcard-links a { min-height: 2.5rem; padding: 0.45rem 1rem; font-size: 0.88rem; }
+@media (min-width: 40rem) {
+  .pgrid { grid-template-columns: repeat(3, 1fr); }
+  .pcard--compact { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .pcard--compact .pcard-media { width: 4.5rem; }
+  .pcard--compact .pcard-body { display: flex; flex-direction: column; }
+  .pcard--compact .pcard-links { margin-top: auto; padding-top: 1rem; }
+  .prose .pcard--compact .pcard-links a { width: 100%; justify-content: center; padding-inline: 0.5rem; }
+}
 
 /* ---------- Footer ---------- */
 .site-foot { background: var(--forest); color: var(--sand); padding-block: clamp(2.5rem, 6vw, 4rem); font-size: 0.95rem; }
