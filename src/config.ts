@@ -3,7 +3,7 @@ export const SITE = {
   tagline: 'Gear and setups for sleeping in the bed of your truck.',
   email: 'hello@campcrackle.com',
   // Pega aquí solo el valor "content" de la etiqueta meta que te da Pinterest al reclamar el sitio.
-  pinterestVerify: '',
+  pinterestVerify: '608b1a812d123f5756bff1d137ff980f',
 };
 
 // Categorías válidas para el campo "category" de cada artículo.
