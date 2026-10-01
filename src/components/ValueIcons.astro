@@ -1,0 +1,40 @@
+---
+// The three value icons from the brand board, drawn as line icons.
+const values = [
+  { title: 'Hand-Picked Gear', text: 'Gear chosen because it fits a truck bed and gets used.', icon: 'binoculars' },
+  { title: 'Truck Camp Setups', text: 'Sleeping, cooking and power layouts that work.', icon: 'truck' },
+  { title: 'Honest Guides', text: "What's worth buying, and what to skip.", icon: 'mountains' },
+];
+---
+<ul class="values">
+  {values.map((v) => (
+    <li>
+      <svg viewBox="0 0 64 48" aria-hidden="true">
+        {v.icon === 'binoculars' && (
+          <>
+            <circle cx="17" cy="32" r="11" />
+            <circle cx="47" cy="32" r="11" />
+            <circle cx="17" cy="32" r="4" />
+            <circle cx="47" cy="32" r="4" />
+            <path d="M10 23l5-15h8l3 13M54 23L49 8h-8l-3 13M27 28q5-4 10 0" />
+          </>
+        )}
+        {v.icon === 'truck' && (
+          <>
+            <path d="M3 34V21h21l5-11h12l8 11 10 3v10h-5M17 34h23M3 34h4M24 21h25M36 10v11" />
+            <circle cx="12" cy="35" r="5.5" />
+            <circle cx="46" cy="35" r="5.5" />
+          </>
+        )}
+        {v.icon === 'mountains' && (
+          <>
+            <path d="M3 42L25 6l11 18 5-7 20 25z" />
+            <path d="M17 19l5 5 4-4 5 5" />
+          </>
+        )}
+      </svg>
+      <h3>{v.title}</h3>
+      <p>{v.text}</p>
+    </li>
+  ))}
+</ul>

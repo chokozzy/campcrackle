@@ -1,11 +1,35 @@
 ---
+import { Picture } from 'astro:assets';
 import Base from './Base.astro';
+import { AFFILIATE_DISCLOSURE } from '../config';
+import { categoryUrl } from '../lib/posts';
 const { frontmatter } = Astro.props;
+const date = frontmatter.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 ---
-<Base title={frontmatter.title} description={frontmatter.description}>
-  <article>
-    <h1>{frontmatter.title}</h1>
-    <p class="disclosure">This post contains affiliate links. As an Amazon Associate I earn from qualifying purchases, at no extra cost to you.</p>
-    <slot />
+<Base title={frontmatter.title} description={frontmatter.description} image={frontmatter.cover} type="article">
+  <article class="post">
+    {frontmatter.cover && (
+      <div class="post-cover wrap">
+        <Picture
+          src={frontmatter.cover}
+          formats={['avif']}
+          fallbackFormat="webp"
+          widths={[480, 768, 1088, 1672]}
+          sizes="(min-width: 72rem) 68rem, 100vw"
+          alt={frontmatter.coverAlt ?? ''}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    )}
+    <div class="prose">
+      <p class="post-meta">
+        <a class="label" href={categoryUrl(frontmatter.category)}>{frontmatter.category}</a>
+        <time datetime={frontmatter.date.toISOString().slice(0, 10)}>{date}</time>
+      </p>
+      <h1>{frontmatter.title}</h1>
+      <p class="disclosure">This post contains affiliate links. {AFFILIATE_DISCLOSURE.replace(/\.$/, '')}, at no extra cost to you.</p>
+      <slot />
+    </div>
   </article>
 </Base>

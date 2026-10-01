@@ -1,9 +1,21 @@
 ---
 import '../styles/global.css';
-import { SITE } from '../config';
-const { title, description = SITE.tagline } = Astro.props;
+import { getImage } from 'astro:assets';
+import { SITE, AFFILIATE_DISCLOSURE } from '../config';
+import { getActiveCategories } from '../lib/posts';
+import heroImage from '../assets/hero.png';
+
+const { title, description = SITE.tagline, image = heroImage, type = 'website' } = Astro.props;
 const fullTitle = title ? `${title} | ${SITE.name}` : `${SITE.name}: ${SITE.tagline}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const social = await getImage({ src: image, width: 1200, height: 630, format: 'jpg' });
+const socialUrl = new URL(social.src, Astro.site);
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const nav = [
+  ...(await getActiveCategories()).map((c) => ({ label: c.name, href: `/category/${c.slug}` })),
+  { label: 'About', href: '/about' },
+];
 ---
 <!doctype html>
 <html lang="en">
@@ -13,30 +25,71 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0F3D2E" />
+    <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
+    <meta property="og:image" content={socialUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
     {SITE.pinterestVerify && <meta name="p:domain_verify" content={SITE.pinterestVerify} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-head">
       <div class="wrap">
-        <a class="logo" href="/">{SITE.name}</a>
-        <nav><a href="/about">About</a></nav>
+        <a class="site-logo" href="/" aria-label={`${SITE.name} home`}>
+          <img src="/logo-compact.svg" alt={SITE.name} width="195" height="40" />
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
+          Menu
+        </button>
+        <nav id="site-nav" class="site-nav" aria-label="Main">
+          <ul>
+            {nav.map((item) => (
+              <li><a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a></li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </header>
-    <main class="wrap"><slot /></main>
-    <footer class="site-foot">
+    <main id="main"><slot /></main>
+    <footer class="site-foot on-dark">
       <div class="wrap">
-        <p>As an Amazon Associate I earn from qualifying purchases.</p>
-        <p><a href="/about">About</a><a href="/privacy">Privacy Policy</a><a href={`mailto:${SITE.email}`}>Contact</a></p>
-        <p>© {new Date().getFullYear()} {SITE.name}</p>
+        <a class="foot-logo" href="/" aria-label={`${SITE.name} home`}>
+          <img src="/logo-full-light.svg" alt={`${SITE.name}: truck bed camping`} width="206" height="130" loading="lazy" />
+        </a>
+        <div class="foot-body">
+          <p class="foot-disclosure">{AFFILIATE_DISCLOSURE} Some links on this site are affiliate links, which means I may earn a commission at no extra cost to you.</p>
+          <ul class="foot-links">
+            <li><a href="/about">About</a></li>
+            <li><a href="/privacy">Privacy</a></li>
+            <li><a href={`mailto:${SITE.email}`}>Contact</a></li>
+          </ul>
+          <p class="foot-copy">© {new Date().getFullYear()} {SITE.name}</p>
+        </div>
       </div>
     </footer>
+    <script is:inline>
+      (() => {
+        const button = document.querySelector('.nav-toggle');
+        const nav = document.getElementById('site-nav');
+        button.addEventListener('click', () => {
+          const open = button.getAttribute('aria-expanded') !== 'true';
+          button.setAttribute('aria-expanded', String(open));
+          nav.classList.toggle('is-open', open);
+        });
+      })();
+    </script>
   </body>
 </html>

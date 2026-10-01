@@ -1,0 +1,8 @@
+{
+  "name": "CampCrackle",
+  "short_name": "CampCrackle",
+  "icons": [{ "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }],
+  "theme_color": "#0F3D2E",
+  "background_color": "#F5E6D3",
+  "display": "browser"
+}

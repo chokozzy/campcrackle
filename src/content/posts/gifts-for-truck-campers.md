@@ -1,8 +1,10 @@
 ---
-layout: ../layouts/Post.astro
 title: "Best Gifts for Truck Campers (2026 Gift Guide)"
 description: "Practical gift ideas for anyone who camps out of a pickup: camp stoves, a 12V fridge, lanterns, camp chairs and stocking stuffers that actually get used."
 date: 2026-10-01
+category: "Gift Guides"
+cover: hero.png
+coverAlt: "Pickup truck with a glowing truck bed tent parked beside a campfire, overlooking a mountain lake at sunset"
 ---
 
 Shopping for someone who would rather sleep in the bed of their truck than in a hotel? Good news: truck campers are easy to buy for, as long as you skip the novelty gadgets.

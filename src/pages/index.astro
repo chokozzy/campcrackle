@@ -1,30 +1,63 @@
 ---
+import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import { SITE } from '../config';
-const modules = import.meta.glob('./*.md', { eager: true });
-const posts = Object.entries(modules)
-  .map(([path, mod]) => ({ url: path.replace('./', '/').replace('.md', ''), ...mod.frontmatter }))
-  .sort((a, b) => new Date(b.date) - new Date(a.date));
+import PostCard from '../components/PostCard.astro';
+import ValueIcons from '../components/ValueIcons.astro';
+import { getPosts } from '../lib/posts';
+import hero from '../assets/hero.png';
+
+const [featured, ...rest] = await getPosts();
 ---
 <Base>
-  <section class="hero">
-    <div class="hero-mark">
-      <h1>{SITE.name}</h1>
-      <svg class="sparks" viewBox="0 0 40 60" aria-hidden="true">
-        <circle cx="10" cy="14" r="3" />
-        <circle cx="26" cy="6" r="2.2" />
-        <circle cx="22" cy="26" r="2.6" />
-        <circle class="coal" cx="18" cy="50" r="8" />
-      </svg>
+  <section class="hero on-dark">
+    <Picture
+      class="hero-img"
+      src={hero}
+      formats={['avif']}
+      fallbackFormat="webp"
+      widths={[480, 768, 1024, 1366, 1672]}
+      sizes="(max-width: 40rem) 190vw, 100vw"
+      alt=""
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="wrap hero-text">
+      <h1>Sleep Better in Your Truck Bed</h1>
+      <p>Practical gear and setups for truck campers.</p>
+      <a class="btn" href="/gifts-for-truck-campers">See the Gift Guide <span aria-hidden="true">→</span></a>
     </div>
-    <p>{SITE.tagline}</p>
   </section>
-  <ul class="posts">
-    {posts.map((p) => (
-      <li>
-        <a href={p.url}>{p.title}</a>
-        <p>{p.description}</p>
-      </li>
-    ))}
-  </ul>
+
+  <section class="band on-dark" aria-labelledby="band-title">
+    <div class="wrap band-grid">
+      <div class="band-intro">
+        <h2 id="band-title">Gear for Nights in the Truck Bed</h2>
+        <p>Honest recommendations for camping gear, so you can spend less time searching and more time outside.</p>
+      </div>
+      <ValueIcons />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="latest-title">
+    <div class="wrap">
+      <h2 id="latest-title" class="section-title">Latest Guides</h2>
+      {featured && <PostCard post={featured} featured />}
+      {rest.length > 0 && (
+        <div class="card-grid">
+          {rest.map((post) => <PostCard post={post} />)}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="about-band" aria-labelledby="about-title">
+    <div class="wrap about-grid">
+      <img src="/logo-full.svg" alt="" width="300" height="189" loading="lazy" />
+      <div>
+        <h2 id="about-title">Built Around the Truck Bed</h2>
+        <p>CampCrackle is about one kind of camping: sleeping in the bed of a pickup and cooking off the tailgate. Every guide is written with that setup in mind.</p>
+        <a class="text-link" href="/about">More about CampCrackle <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
 </Base>

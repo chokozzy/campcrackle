@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import { postUrl } from '../lib/posts';
+const { post, featured = false, heading = 'h3' } = Astro.props;
+const { title, description, category, cover } = post.data;
+const Heading = heading;
+---
+<article class:list={['card', { 'card--featured': featured }]}>
+  {cover && (
+    <Image
+      class="card-cover"
+      src={cover}
+      widths={[400, 640, 960, 1280]}
+      sizes={featured ? '(min-width: 56rem) 38rem, 100vw' : '(min-width: 56rem) 22rem, 100vw'}
+      alt=""
+      loading={featured ? 'eager' : 'lazy'}
+    />
+  )}
+  <div class="card-body">
+    <p class="label">{category}</p>
+    <Heading class="card-title"><a href={postUrl(post)}>{title}</a></Heading>
+    <p class="card-text">{description}</p>
+    <span class="card-more" aria-hidden="true">Read the guide →</span>
+  </div>
+</article>

@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts, getActiveCategories } from '../../lib/posts';
+
+// Pages are generated only for categories that have posts, so there are no empty category pages.
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return (await getActiveCategories()).map((category) => ({
+    params: { category: category.slug },
+    props: { category, posts: posts.filter((p) => p.data.category === category.name) },
+  }));
+}
+
+const { category, posts } = Astro.props;
+---
+<Base title={category.name} description={category.description} image={posts[0].data.cover}>
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Category</p>
+      <h1>{category.name}</h1>
+      <p>{category.description}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap card-grid">
+      {posts.map((post) => <PostCard post={post} heading="h2" />)}
+    </div>
+  </section>
+</Base>
