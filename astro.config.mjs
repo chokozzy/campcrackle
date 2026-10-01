@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 // Marca los enlaces de afiliado como exige Google y los abre en otra pestaña.
 function affiliateLinks() {
-  const isAffiliate = (href) => /amzn\.to|amazon\.com/.test(href || '');
+  const isAffiliate = (href) => /amzn\.to|link\.amazon|amazon\.com/.test(href || '');
   const walk = (node) => {
     if (node.type === 'element' && node.tagName === 'a' && isAffiliate(node.properties?.href)) {
       node.properties.rel = ['sponsored', 'nofollow', 'noopener'];
