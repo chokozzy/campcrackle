@@ -61,6 +61,7 @@ date: 2026-10-01
 category: "Gift Guides"   # Sleep Setups | Camp Kitchen | Power & Fridges | Gift Guides
 cover: hero.png            # opcional: nombre de un archivo dentro de src/assets/
 coverAlt: "Descripción de la foto"   # opcional
+coverPosition: "50% 68%"  # opcional: qué parte de la foto se ve al recortarla (útil con fotos verticales)
 ---
 ```
 

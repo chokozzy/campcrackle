@@ -14,6 +14,8 @@ const posts = defineCollection({
     // Nombre de un archivo dentro de src/assets, por ejemplo "hero.png" (se optimiza solo).
     cover: z.string().optional(),
     coverAlt: z.string().optional(),
+    // Qué parte de la portada se ve al recortarla (CSS object-position), por ejemplo "50% 68%". Por defecto el centro.
+    coverPosition: z.string().optional(),
   }),
 });
 
