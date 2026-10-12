@@ -281,6 +281,9 @@ a.label:hover { background: var(--forest); }
 .tpicks tbody tr + tr > * { border-top: 1px solid var(--line); }
 .tpicks-pick { font-family: var(--head); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--campfire-dark); }
 .tpicks .tpicks-name { font-family: var(--head); font-weight: 700; font-size: 1rem; }
+/* Product name links to Amazon too: plain text that underlines on hover, not a button */
+.prose .tpicks-name a { display: inline; min-height: 0; padding: 0; background: none; color: inherit; font: inherit; border-radius: 0; text-decoration: none; }
+.prose .tpicks-name a:hover { background: none; text-decoration: underline; text-decoration-color: var(--campfire); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .tpicks-cta { white-space: nowrap; }
 .prose .tpicks-cta a { font-size: 0.9rem; padding-inline: 1.1rem; }
 @media (max-width: 39.99rem) {

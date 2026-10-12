@@ -23,7 +23,9 @@ const { picks, title = 'Top Picks' } = Astro.props;
       {picks.map((p) => (
         <tr role="row">
           <td role="cell" class="tpicks-pick">{p.pick}</td>
-          <th role="rowheader" scope="row" class="tpicks-name">{p.name}</th>
+          <th role="rowheader" scope="row" class="tpicks-name">
+            <a href={p.url} rel="sponsored nofollow noopener" target="_blank">{p.name}</a>
+          </th>
           <td role="cell" class="tpicks-why">{p.why}</td>
           <td role="cell" class="tpicks-cta">
             <a href={p.url} rel="sponsored nofollow noopener" target="_blank" aria-label={`Check price on Amazon: ${p.name}`}>
