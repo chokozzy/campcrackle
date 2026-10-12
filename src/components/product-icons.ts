@@ -111,6 +111,41 @@ export const PRODUCT_ICONS = {
     <path fill="${F}" d="M35 38V26a13 14 0 0 1 26 0v12z"/>
     <ellipse cx="48" cy="27" rx="6.5" ry="7.5" fill="${K}"/>
     <path d="M48 44v42" fill="none" stroke="${F}" stroke-width="2.5"/>`,
+  // Stormproof matches standing in an open waterproof case
+  matches: `
+    <rect x="22" y="44" width="52" height="40" rx="7" fill="${F}"/>
+    <rect x="18" y="38" width="60" height="10" rx="4" fill="${P}"/>
+    <rect x="31" y="22" width="5" height="18" rx="2" fill="${K}"/><rect x="45.5" y="18" width="5" height="22" rx="2" fill="${K}"/><rect x="60" y="22" width="5" height="18" rx="2" fill="${K}"/>
+    <rect x="30" y="16" width="7" height="9" rx="3.5" fill="${P}"/><rect x="60" y="16" width="7" height="9" rx="3.5" fill="${P}"/>
+    ${flame(48, 18, 0.9)}
+    <rect x="30" y="58" width="36" height="14" rx="3" fill="${C}"/>`,
+  // Ferro rod and striker throwing sparks
+  ferro: `
+    <rect x="12" y="58" width="26" height="14" rx="6" fill="${C}" transform="rotate(-30 25 65)"/>
+    <rect x="30" y="40" width="44" height="9" rx="4.5" fill="${F}" transform="rotate(-30 52 44)"/>
+    <rect x="44" y="64" width="34" height="11" rx="3" fill="${P}" transform="rotate(20 61 69)"/>
+    <path d="M68 24l8-8M76 36l12-3M62 18l1-10M84 22l6-7" fill="none" stroke="${C}" stroke-width="3.5" stroke-linecap="round"/>`,
+  // String of glowing bulbs
+  'string-lights': `
+    <path d="M6 22c14 22 28 22 42 4c14 18 28 18 42-4" fill="none" stroke="${F}" stroke-width="3"/>
+    <g fill="${F}"><rect x="15" y="33" width="8" height="7" rx="1.5"/><rect x="33" y="35" width="8" height="7" rx="1.5"/><rect x="55" y="35" width="8" height="7" rx="1.5"/><rect x="73" y="33" width="8" height="7" rx="1.5"/></g>
+    <g fill="${C}"><ellipse cx="19" cy="49" rx="7" ry="10"/><ellipse cx="37" cy="51" rx="7" ry="10"/><ellipse cx="59" cy="51" rx="7" ry="10"/><ellipse cx="77" cy="49" rx="7" ry="10"/></g>
+    <g fill="${K}"><circle cx="17" cy="46" r="2.2"/><circle cx="35" cy="48" r="2.2"/><circle cx="57" cy="48" r="2.2"/><circle cx="75" cy="46" r="2.2"/></g>
+    <rect x="6" y="80" width="84" height="4" rx="2" fill="${P}"/>`,
+  // Speckled enamel mug with steam
+  mug: `
+    <path d="M36 12c-4 5 4 8 0 14M50 10c-4 5 4 8 0 14" fill="none" stroke="${P}" stroke-width="3" stroke-linecap="round"/>
+    <path d="M70 44h6a10 10 0 0 1 0 20h-6" fill="none" stroke="${F}" stroke-width="6"/>
+    <path fill="${K}" stroke="${F}" stroke-width="4" d="M20 34h52v38a10 10 0 0 1-10 10H30a10 10 0 0 1-10-10z"/>
+    <rect x="18" y="31" width="56" height="7" rx="3.5" fill="${F}"/>
+    <g fill="${P}"><circle cx="32" cy="50" r="1.8"/><circle cx="46" cy="60" r="1.8"/><circle cx="58" cy="48" r="1.8"/><circle cx="36" cy="70" r="1.8"/><circle cx="60" cy="68" r="1.8"/></g>
+    <rect x="22" y="84" width="48" height="4" rx="2" fill="${C}"/>`,
+  // Spork: spoon bowl with fork tines
+  spork: `
+    <path fill="${C}" d="M30 10h36v14a18 20 0 0 1-36 0z"/>
+    <g fill="${K}"><rect x="38" y="8" width="3.5" height="12" rx="1.5"/><rect x="46.25" y="8" width="3.5" height="12" rx="1.5"/><rect x="54.5" y="8" width="3.5" height="12" rx="1.5"/></g>
+    <path fill="${F}" d="M43 42h10v40a5 5 0 0 1-10 0z"/>
+    <rect x="45.5" y="52" width="5" height="24" rx="2.5" fill="${P}"/>`,
 } as const;
 
 export type ProductIconName = keyof typeof PRODUCT_ICONS;
