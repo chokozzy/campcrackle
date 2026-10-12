@@ -87,7 +87,7 @@ import ProductCard from '../../components/ProductCard.astro';
 </ProductCard>
 ```
 
-- `icon`: `stove`, `burner`, `kitchen`, `utensils`, `fridge`, `lantern`, `headlamp`, `chair`, `hammock`, `tarp`, `first-aid`, `soap`, `poncho`, `matches`, `ferro`, `string-lights`, `mug`, `spork`. Las ilustraciones están en `src/components/product-icons.ts`.
+- `icon`: `stove`, `burner`, `kitchen`, `utensils`, `fridge`, `lantern`, `headlamp`, `chair`, `hammock`, `tarp`, `first-aid`, `soap`, `poncho`, `matches`, `ferro`, `string-lights`, `mug`, `spork`, `hand-warmers`, `socks`, `dry-bag`, `towel`, `multitool`, `carabiner-light`, `cards`. Las ilustraciones están en `src/components/product-icons.ts`.
 - `badge`, `bestFor` y `highlights` son opcionales. Pon solo datos que estén en el texto del artículo.
 - `image` (opcional): una foto **tuya** importada desde `src/assets/`; reemplaza la ilustración. Nunca imágenes de Amazon ni del fabricante.
 - `compact` dentro de `<ProductGrid>`: tarjetas pequeñas en 3 columnas.

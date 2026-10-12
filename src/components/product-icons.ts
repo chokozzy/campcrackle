@@ -146,6 +146,59 @@ export const PRODUCT_ICONS = {
     <g fill="${K}"><rect x="38" y="8" width="3.5" height="12" rx="1.5"/><rect x="46.25" y="8" width="3.5" height="12" rx="1.5"/><rect x="54.5" y="8" width="3.5" height="12" rx="1.5"/></g>
     <path fill="${F}" d="M43 42h10v40a5 5 0 0 1-10 0z"/>
     <rect x="45.5" y="52" width="5" height="24" rx="2.5" fill="${P}"/>`,
+  // Two hand warmer packs with heat waves
+  'hand-warmers': `
+    <path d="M30 12c-4 5 4 8 0 14M48 8c-4 5 4 8 0 14M66 12c-4 5 4 8 0 14" fill="none" stroke="${C}" stroke-width="3" stroke-linecap="round"/>
+    <rect x="12" y="34" width="44" height="50" rx="6" fill="${F}" transform="rotate(-8 34 59)"/>
+    <rect x="40" y="34" width="44" height="50" rx="6" fill="${C}" transform="rotate(8 62 59)"/>
+    <rect x="49" y="48" width="26" height="12" rx="3" fill="${K}" transform="rotate(8 62 54)"/>
+    <path d="M50 70h24" fill="none" stroke="${K}" stroke-width="3" stroke-linecap="round" transform="rotate(8 62 70)"/>`,
+  // Wool hiking sock
+  socks: `
+    <path fill="${P}" d="M30 10h30v44l14 12a12 12 0 0 1-15 19L28 62a8 8 0 0 1-2-6V10z"/>
+    <rect x="28" y="8" width="34" height="12" rx="4" fill="${F}"/>
+    <path d="M30 28h30M30 36h30" fill="none" stroke="${K}" stroke-width="2.5"/>
+    <path fill="${C}" d="M64 72l10-6a12 12 0 0 1-15 19l-6-6z"/>
+    <path fill="${C}" d="M26 50h34v4l-4 0H26z"/>`,
+  // Roll-top dry bag with buckle
+  'dry-bag': `
+    <path fill="${C}" d="M26 30h44l4 48a8 8 0 0 1-8 8H30a8 8 0 0 1-8-8z"/>
+    <rect x="24" y="14" width="48" height="16" rx="5" fill="${F}"/>
+    <path d="M28 20h40M28 25h40" fill="none" stroke="${P}" stroke-width="2"/>
+    <path d="M24 22h-6v14M72 22h6v14" fill="none" stroke="${F}" stroke-width="4" stroke-linecap="round"/>
+    <rect x="14" y="34" width="8" height="8" rx="2" fill="${P}"/><rect x="74" y="34" width="8" height="8" rx="2" fill="${P}"/>
+    <rect x="36" y="50" width="24" height="18" rx="4" fill="${K}"/>
+    <path fill="${P}" d="M48 52c4 5 6 7 6 10a6 6 0 0 1-12 0c0-3 2-5 6-10z"/>`,
+  // Rolled microfiber towel
+  towel: `
+    <rect x="14" y="28" width="56" height="44" rx="4" fill="${P}"/>
+    <path d="M14 40h56M14 60h56" fill="none" stroke="${K}" stroke-width="2.5"/>
+    <circle cx="70" cy="50" r="22" fill="${C}"/>
+    <circle cx="70" cy="50" r="14" fill="none" stroke="${K}" stroke-width="3"/>
+    <circle cx="70" cy="50" r="6" fill="${F}"/>
+    <rect x="10" y="78" width="76" height="4" rx="2" fill="${F}"/>`,
+  // Keychain multi-tool with fanned-out tools
+  multitool: `
+    <circle cx="20" cy="74" r="10" fill="none" stroke="${P}" stroke-width="4"/>
+    <rect x="26" y="40" width="20" height="10" rx="3" fill="${K}" stroke="${F}" stroke-width="2" transform="rotate(-60 36 45)"/>
+    <path fill="${K}" stroke="${F}" stroke-width="2" d="M40 46l34-22c4 6 2 12-6 16L46 54z"/>
+    <rect x="44" y="50" width="38" height="7" rx="3" fill="${C}" transform="rotate(-10 44 54)"/>
+    <rect x="22" y="54" width="44" height="16" rx="8" fill="${F}" transform="rotate(-20 44 62)"/>
+    <circle cx="28" cy="66" r="3" fill="${K}"/>`,
+  // LED light hanging from a carabiner
+  'carabiner-light': `
+    <path d="M44 8h8a10 10 0 0 1 10 10v12a10 10 0 0 1-10 10h-8a10 10 0 0 1-10-10V18a10 10 0 0 1 10-10z" fill="none" stroke="${C}" stroke-width="5"/>
+    <path d="M58 16v16" fill="none" stroke="${F}" stroke-width="3" stroke-linecap="round"/>
+    <rect x="30" y="40" width="36" height="42" rx="9" fill="${F}"/>
+    <circle cx="48" cy="61" r="12" fill="${C}"/><circle cx="48" cy="61" r="5" fill="${K}"/>
+    <path d="M18 61h-6M84 61h-6M24 44l-5-4M72 44l5-4" fill="none" stroke="${C}" stroke-width="3.5" stroke-linecap="round"/>`,
+  // Fanned playing cards
+  cards: `
+    <rect x="16" y="20" width="36" height="52" rx="5" fill="${P}" transform="rotate(-16 34 46)"/>
+    <rect x="30" y="18" width="36" height="52" rx="5" fill="${K}" stroke="${F}" stroke-width="3"/>
+    <rect x="44" y="22" width="36" height="52" rx="5" fill="${K}" stroke="${F}" stroke-width="3" transform="rotate(16 62 48)"/>
+    <path fill="${C}" d="M62 38c-6 6-9 9-9 13a4.5 4.5 0 0 0 9 1a4.5 4.5 0 0 0 9-1c0-4-3-7-9-13z" transform="rotate(16 62 48)"/>
+    <path d="M6 84c14-8 70-8 84 0" fill="none" stroke="${F}" stroke-width="4" stroke-linecap="round"/>`,
 } as const;
 
 export type ProductIconName = keyof typeof PRODUCT_ICONS;
