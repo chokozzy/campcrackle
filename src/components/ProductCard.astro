@@ -8,7 +8,8 @@ interface Props {
   badge?: string;
   bestFor?: string;
   highlights?: string[];
-  links: { label: string; url: string }[];
+  /** Button text defaults to "Check Price on Amazon". */
+  links: { label?: string; url: string }[];
   /** Your own photo (imported from src/assets). Replaces the illustration. Never an Amazon or manufacturer image. */
   image?: ImageMetadata;
   imageAlt?: string;
@@ -41,8 +42,8 @@ const id = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     <p class="pcard-links">
       {links.map((link) => (
         // Affiliate links: rel is set here because the rehype plugin does not see component props.
-        <a href={link.url} rel="sponsored nofollow noopener" target="_blank">
-          {link.label}<span class="visually-hidden">: {name}</span>
+        <a href={link.url} rel="sponsored nofollow noopener" target="_blank" aria-label={`${link.label ?? 'Check price on Amazon'}: ${name}`}>
+          {link.label ?? 'Check Price on Amazon'}
         </a>
       ))}
     </p>

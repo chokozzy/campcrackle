@@ -257,7 +257,7 @@ a.label:hover { background: var(--forest); }
 .pcard--compact .pcard-media { width: 100%; border-radius: 10px; }
 .prose .pcard--compact h3 { font-size: 1.02rem; }
 .pcard--compact .pcard-text { font-size: 0.92rem; line-height: 1.55; }
-.prose .pcard--compact .pcard-links a { min-height: 2.5rem; padding: 0.45rem 1rem; font-size: 0.88rem; }
+.prose .pcard--compact .pcard-links a { padding: 0.45rem 1rem; font-size: 0.88rem; }
 @media (min-width: 40rem) {
   .pgrid { grid-template-columns: repeat(3, 1fr); }
   .pcard--compact { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
@@ -265,6 +265,36 @@ a.label:hover { background: var(--forest); }
   .pcard--compact .pcard-body { display: flex; flex-direction: column; }
   .pcard--compact .pcard-links { margin-top: auto; padding-top: 1rem; }
   .prose .pcard--compact .pcard-links a { width: 100%; justify-content: center; padding-inline: 0.5rem; }
+}
+
+/* Mobile: Amazon buttons span the card */
+@media (max-width: 39.99rem) {
+  .prose .pcard-links a { width: 100%; justify-content: center; text-align: center; }
+}
+
+/* ---------- Top picks (<TopPicks> in .mdx posts) ---------- */
+.tpicks { margin: 0 0 2.5rem; }
+.prose .tpicks h2 { margin: 0 0 1rem; }
+.tpicks table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--paper); border: 1px solid var(--line); border-top: 4px solid var(--campfire); border-radius: 0 0 var(--radius) var(--radius); box-shadow: var(--shadow); font-size: 0.95rem; line-height: 1.5; }
+.tpicks th, .tpicks td { padding: 0.85rem 1rem; text-align: left; vertical-align: middle; }
+.tpicks thead th { font-family: var(--head); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pine); border-bottom: 1px solid var(--line); }
+.tpicks tbody tr + tr > * { border-top: 1px solid var(--line); }
+.tpicks-pick { font-family: var(--head); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--campfire-dark); }
+.tpicks .tpicks-name { font-family: var(--head); font-weight: 700; font-size: 1rem; }
+.tpicks-cta { white-space: nowrap; }
+.prose .tpicks-cta a { font-size: 0.9rem; padding-inline: 1.1rem; }
+@media (max-width: 39.99rem) {
+  /* Each row becomes a stacked card, no horizontal scroll */
+  .tpicks table, .tpicks tbody, .tpicks tr, .tpicks th, .tpicks td { display: block; }
+  .tpicks table { background: none; border: 0; box-shadow: none; }
+  .tpicks thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .tpicks tbody tr { margin-bottom: 1rem; padding: 1.1rem; background: var(--paper); border: 1px solid var(--line); border-top: 4px solid var(--campfire); border-radius: 0 0 var(--radius) var(--radius); box-shadow: var(--shadow); }
+  .tpicks tbody tr + tr > * { border-top: 0; }
+  .tpicks th, .tpicks td { padding: 0; }
+  .tpicks-pick { margin-bottom: 0.3rem; }
+  .tpicks-why { margin: 0.35rem 0 0.9rem; }
+  .tpicks-cta { white-space: normal; }
+  .prose .tpicks-cta a { width: 100%; justify-content: center; text-align: center; font-size: 1rem; }
 }
 
 /* ---------- Footer ---------- */

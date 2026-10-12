@@ -1,0 +1,37 @@
+---
+// Quick-pick table near the top of a guide. Below 40rem each row becomes a stacked card.
+// Explicit ARIA roles keep table semantics when the mobile CSS changes the display of rows and cells.
+interface Props {
+  picks: { pick: string; name: string; why: string; url: string }[];
+  title?: string;
+}
+
+const { picks, title = 'Top Picks' } = Astro.props;
+---
+<section class="tpicks" aria-labelledby="top-picks">
+  <h2 id="top-picks">{title}</h2>
+  <table role="table">
+    <thead role="rowgroup">
+      <tr role="row">
+        <th role="columnheader" scope="col">Pick</th>
+        <th role="columnheader" scope="col">Product</th>
+        <th role="columnheader" scope="col">Why</th>
+        <th role="columnheader" scope="col"><span class="visually-hidden">Link</span></th>
+      </tr>
+    </thead>
+    <tbody role="rowgroup">
+      {picks.map((p) => (
+        <tr role="row">
+          <td role="cell" class="tpicks-pick">{p.pick}</td>
+          <th role="rowheader" scope="row" class="tpicks-name">{p.name}</th>
+          <td role="cell" class="tpicks-why">{p.why}</td>
+          <td role="cell" class="tpicks-cta">
+            <a href={p.url} rel="sponsored nofollow noopener" target="_blank" aria-label={`Check price on Amazon: ${p.name}`}>
+              Check Price on Amazon
+            </a>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</section>

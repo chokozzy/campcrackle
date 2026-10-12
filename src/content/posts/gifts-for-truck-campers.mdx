@@ -9,6 +9,16 @@ coverAlt: "Pickup truck with a glowing truck bed tent parked beside a campfire, 
 
 import ProductCard from '../../components/ProductCard.astro';
 import ProductGrid from '../../components/ProductGrid.astro';
+import TopPicks from '../../components/TopPicks.astro';
+
+<TopPicks
+  picks={[
+    { pick: 'Big-Ticket Upgrade', name: 'EUHOMY 12V Compressor Fridge (19 Quart)', why: "Keeps food cold for days off the truck's 12V outlet.", url: 'https://link.amazon/B01dyFNhK' },
+    { pick: 'Best Overall Stove', name: 'Coleman Triton 2-Burner Propane Stove', why: 'Coffee and breakfast at the same time.', url: 'https://link.amazon/B0f5lNVWQ' },
+    { pick: 'Brightest Pick', name: 'AlpsWolf Rechargeable Camp Lantern', why: '800 lumens, lights the whole campsite.', url: 'https://link.amazon/B04274cpd' },
+    { pick: 'Budget Pick', name: 'Gas One GS-3400P Dual Fuel Stove', why: 'Runs on propane or butane.', url: 'https://amzn.to/4hiXdjq' },
+  ]}
+/>
 
 Shopping for someone who would rather sleep in the bed of their truck than in a hotel? Good news: truck campers are easy to buy for, as long as you skip the novelty gadgets.
 
@@ -26,7 +36,7 @@ The tailgate is the kitchen counter. These gifts make cooking there faster and l
   badge="Best Overall Stove"
   bestFor="Anyone still cooking on a single burner"
   highlights={['2 burners', 'Propane', 'Folds into a case']}
-  links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B0f5lNVWQ' }]}
+  links={[{ url: 'https://link.amazon/B0f5lNVWQ' }]}
 >
   Two burners mean coffee and breakfast at the same time. It's a classic, simple propane stove that folds up into a case, which makes it the safe pick if they're still cooking on a single burner.
 </ProductCard>
@@ -37,7 +47,7 @@ The tailgate is the kitchen counter. These gifts make cooking there faster and l
   badge="Budget Pick"
   bestFor="A backup stove or solo trips"
   highlights={['Single burner', 'Propane or butane', 'Carry case']}
-  links={[{ label: 'Check it on Amazon', url: 'https://amzn.to/4hiXdjq' }]}
+  links={[{ url: 'https://amzn.to/4hiXdjq' }]}
 >
   The budget option, and a clever one: it runs on both propane and butane, so they can use whichever fuel they find. A single burner with a carry case, perfect as a backup stove or for solo trips.
 </ProductCard>
@@ -47,7 +57,7 @@ The tailgate is the kitchen counter. These gifts make cooking there faster and l
   icon="kitchen"
   bestFor="Campers short on tailgate space"
   highlights={['Folding stand', 'Prep area']}
-  links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B0anSgfd8' }]}
+  links={[{ url: 'https://link.amazon/B0anSgfd8' }]}
 >
   A folding kitchen stand with a prep area, so the stove and cutting board aren't fighting for space on the tailgate. It's the gift that makes a campsite feel organized.
 </ProductCard>
@@ -57,7 +67,7 @@ The tailgate is the kitchen counter. These gifts make cooking there faster and l
   icon="utensils"
   bestFor="The tools that always get forgotten at home"
   highlights={['27 pieces', 'Stainless steel', 'Organizer']}
-  links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B0bFUtzMR' }]}
+  links={[{ url: 'https://link.amazon/B0bFUtzMR' }]}
 >
   Spatula, tongs, knives and the rest of the tools that always get forgotten at home, all in one organizer. Stainless steel holds up to years of camp cooking.
 </ProductCard>
@@ -70,7 +80,7 @@ The tailgate is the kitchen counter. These gifts make cooking there faster and l
   badge="Big-Ticket Upgrade"
   bestFor="Keeping food cold for more than a day"
   highlights={['19 quart', '12/24V or wall plug', 'Phone app control']}
-  links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B01dyFNhK' }]}
+  links={[{ url: 'https://link.amazon/B01dyFNhK' }]}
 >
   The big-ticket upgrade. No more soggy food floating in melted ice: this compressor fridge runs off the truck's 12/24V outlet or a regular wall plug, holds anywhere from freezing to fridge temperature, and can be controlled from a phone app. It's the gift most truck campers want and never buy for themselves.
 </ProductCard>
@@ -81,7 +91,7 @@ The tailgate is the kitchen counter. These gifts make cooking there faster and l
   badge="Brightest Pick"
   bestFor="Lighting the whole campsite"
   highlights={['800 lumens', 'Rechargeable', 'Hanging strap']}
-  links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B04274cpd' }]}
+  links={[{ url: 'https://link.amazon/B04274cpd' }]}
 >
   Bright enough at 800 lumens to light the whole campsite, with a built-in rechargeable battery so it doesn't drain the truck. The strap lets it hang from the tailgate or a tree branch.
 </ProductCard>
@@ -92,7 +102,7 @@ The tailgate is the kitchen counter. These gifts make cooking there faster and l
   badge="Best Value"
   bestFor="One light for the truck, one for the camp table"
   highlights={['2-pack', '6 light modes', 'Rechargeable']}
-  links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B0h8UjkTs' }]}
+  links={[{ url: 'https://link.amazon/B0h8UjkTs' }]}
 >
   A smaller, cheaper pair with six light modes. One for the cab or the truck bed, one for the camp table.
 </ProductCard>
@@ -102,7 +112,7 @@ The tailgate is the kitchen counter. These gifts make cooking there faster and l
   icon="headlamp"
   bestFor="Cooking after dark and late-night trips outside"
   highlights={['Hands-free', 'Rechargeable']}
-  links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B02vXwGWa' }]}
+  links={[{ url: 'https://link.amazon/B02vXwGWa' }]}
 >
   Hands-free light for cooking after dark and late-night trips outside. Rechargeable means no more digging for batteries.
 </ProductCard>
@@ -114,7 +124,7 @@ The tailgate is the kitchen counter. These gifts make cooking there faster and l
   icon="chair"
   bestFor="Sitting around the fire or at a tailgate"
   highlights={['4-can cooler', 'Cup holder', 'Side pockets']}
-  links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B0a55xxkG' }]}
+  links={[{ url: 'https://link.amazon/B0a55xxkG' }]}
 >
   A cushioned camp chair with a 4-can cooler in the armrest, a cup holder and side pockets. Great around the fire or at a tailgate.
 </ProductCard>
@@ -124,7 +134,7 @@ The tailgate is the kitchen counter. These gifts make cooking there faster and l
   icon="hammock"
   bestFor="An afternoon spot once camp is set up"
   highlights={['Rated for 400 lb', 'Tree straps included', 'Sets up in minutes']}
-  links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B0bv4J339' }]}
+  links={[{ url: 'https://link.amazon/B0bv4J339' }]}
 >
   Rated for 400 pounds and packed with tree straps, it sets up between two trees in minutes. The perfect afternoon spot while camp is already set up.
 </ProductCard>
@@ -134,7 +144,7 @@ The tailgate is the kitchen counter. These gifts make cooking there faster and l
   icon="tarp"
   bestFor="A rain shelter over the tailgate or a ground cover"
   highlights={['6 x 8 ft', 'Waterproof', 'Reinforced grommets']}
-  links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B05AVeK3O' }]}
+  links={[{ url: 'https://link.amazon/B05AVeK3O' }]}
 >
   Thick, waterproof and UV resistant, with reinforced grommets. String it over the tailgate for a rain shelter or use it as a ground cover. Every truck should carry one.
 </ProductCard>
@@ -149,7 +159,7 @@ Small gifts that still get used on every trip.
     name="BAND-AID Travel Ready First Aid Kit"
     icon="first-aid"
     highlights={['80 pieces', 'Compact case']}
-    links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B0hu4rmEl' }]}
+    links={[{ url: 'https://link.amazon/B0hu4rmEl' }]}
   >
     80 pieces in a compact case that lives in the glovebox.
   </ProductCard>
@@ -158,7 +168,7 @@ Small gifts that still get used on every trip.
     name="Portable Soap Sheets"
     icon="soap"
     highlights={['100 sheets']}
-    links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B02127haz' }]}
+    links={[{ url: 'https://link.amazon/B02127haz' }]}
   >
     Clean hands at camp without a bottle of soap leaking in the bag.
   </ProductCard>
@@ -167,7 +177,7 @@ Small gifts that still get used on every trip.
     name="ANYOO Hooded Rain Poncho"
     icon="poncho"
     highlights={['Hooded', 'Reusable', 'Packs small']}
-    links={[{ label: 'Check it on Amazon', url: 'https://link.amazon/B0a2SPlHR' }]}
+    links={[{ url: 'https://link.amazon/B0a2SPlHR' }]}
   >
     Light, reusable and packs small for surprise storms.
   </ProductCard>
