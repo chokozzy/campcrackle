@@ -16,6 +16,8 @@ const posts = defineCollection({
     coverAlt: z.string().optional(),
     // Qué parte de la portada se ve al recortarla (CSS object-position), por ejemplo "50% 68%". Por defecto el centro.
     coverPosition: z.string().optional(),
+    // Foto de ambiente bajo una H2: "heading" es el texto exacto del título, "image" un archivo dentro de src/assets/guides.
+    sections: z.array(z.object({ heading: z.string(), image: z.string(), alt: z.string() })).optional(),
   }),
 });
 

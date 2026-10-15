@@ -6,7 +6,7 @@ import { categoryUrl } from '../lib/posts';
 const { frontmatter } = Astro.props;
 const date = frontmatter.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 ---
-<Base title={frontmatter.title} description={frontmatter.description} image={frontmatter.cover} type="article">
+<Base title={frontmatter.title} description={frontmatter.description} image={frontmatter.cover} type="article" pinterest>
   <article class="post">
     {frontmatter.cover && (
       <div class="post-cover wrap">
@@ -20,6 +20,7 @@ const date = frontmatter.date.toLocaleDateString('en-US', { year: 'numeric', mon
           style={frontmatter.coverPosition && `object-position: ${frontmatter.coverPosition}`}
           loading="eager"
           fetchpriority="high"
+          data-pin-description={frontmatter.title}
         />
       </div>
     )}

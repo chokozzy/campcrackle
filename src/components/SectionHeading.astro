@@ -1,0 +1,27 @@
+---
+// Replaces every ## heading in .mdx posts (mapped in pages/[slug].astro).
+// If the post's frontmatter lists a "sections" photo for this heading, it goes right below it.
+import { Image } from 'astro:assets';
+
+const { id, ...rest } = Astro.props;
+const { sectionImages = {}, pinDescription } = Astro.locals as {
+  sectionImages?: Record<string, { image: ImageMetadata; alt: string }>;
+  pinDescription?: string;
+};
+const photo = id ? sectionImages[id] : undefined;
+---
+<h2 id={id} {...rest}><slot /></h2>
+{photo && (
+  <figure class="section-photo">
+    <Image
+      src={photo.image}
+      alt={photo.alt}
+      widths={[400, 680, 848]}
+      sizes="(min-width: 46rem) 42rem, calc(100vw - 2.5rem)"
+      format="webp"
+      loading="lazy"
+      data-pin-description={pinDescription}
+    />
+    <figcaption>Illustrative photo</figcaption>
+  </figure>
+)}
