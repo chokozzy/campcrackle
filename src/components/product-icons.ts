@@ -199,6 +199,80 @@ export const PRODUCT_ICONS = {
     <rect x="44" y="22" width="36" height="52" rx="5" fill="${K}" stroke="${F}" stroke-width="3" transform="rotate(16 62 48)"/>
     <path fill="${C}" d="M62 38c-6 6-9 9-9 13a4.5 4.5 0 0 0 9 1a4.5 4.5 0 0 0 9-1c0-4-3-7-9-13z" transform="rotate(16 62 48)"/>
     <path d="M6 84c14-8 70-8 84 0" fill="none" stroke="${F}" stroke-width="4" stroke-linecap="round"/>`,
+  // Portable power station: a box with a carry handle, a display and outlets
+  'power-station': `
+    <path d="M30 30v-8a5 5 0 0 1 5-5h26a5 5 0 0 1 5 5v8" fill="none" stroke="${F}" stroke-width="5"/>
+    <rect x="12" y="28" width="72" height="54" rx="7" fill="${F}"/>
+    <rect x="20" y="37" width="26" height="16" rx="3" fill="${K}"/>
+    <rect x="24" y="41" width="13" height="8" rx="1.5" fill="${C}"/>
+    <rect x="54" y="38" width="22" height="14" rx="3" fill="${P}"/>
+    <g fill="${K}"><rect x="20" y="62" width="10" height="10" rx="2"/><rect x="36" y="62" width="10" height="10" rx="2"/></g>
+    <g fill="${P}"><rect x="54" y="62" width="6" height="10" rx="1.5"/><rect x="64" y="62" width="6" height="10" rx="1.5"/></g>`,
+  // Hard-sided cooler with side handles and a latch
+  cooler: `
+    <rect x="12" y="32" width="72" height="48" rx="6" fill="${P}"/>
+    <rect x="8" y="24" width="80" height="14" rx="5" fill="${F}"/>
+    <rect x="3" y="46" width="10" height="7" rx="3" fill="${F}"/><rect x="83" y="46" width="10" height="7" rx="3" fill="${F}"/>
+    <rect x="42" y="36" width="12" height="9" rx="2" fill="${C}"/>
+    <rect x="20" y="58" width="56" height="4" rx="2" fill="${K}" opacity=".5"/>
+    <rect x="18" y="80" width="10" height="5" rx="1.5" fill="${F}"/><rect x="68" y="80" width="10" height="5" rx="1.5" fill="${F}"/>`,
+  // Propane fire pit: a bowl of flames on a base with a tank hose
+  'fire-pit': `
+    ${flame(34, 44, 1.3)}${flame(48, 40, 1.6)}${flame(62, 44, 1.3)}
+    <path fill="${F}" d="M10 44h76l-6 16a8 8 0 0 1-7.5 5h-49A8 8 0 0 1 16 60z"/>
+    <rect x="18" y="44" width="60" height="5" rx="2" fill="${P}"/>
+    <rect x="40" y="65" width="16" height="12" fill="${P}"/>
+    <rect x="26" y="77" width="44" height="7" rx="3" fill="${F}"/>
+    <path d="M70 80c8 0 12 2 16 6" fill="none" stroke="${C}" stroke-width="3" stroke-linecap="round"/>`,
+  // Hatchet with a wedge head
+  hatchet: `
+    <g transform="rotate(20 48 50)">
+      <rect x="44" y="16" width="10" height="72" rx="5" fill="${F}"/>
+      <rect x="43" y="66" width="12" height="20" rx="4" fill="${C}"/>
+      <path fill="${K}" stroke="${F}" stroke-width="3" stroke-linejoin="round" d="M44 20L22 12c-7 9-7 25 0 34l22-8z"/>
+      <rect x="40" y="14" width="22" height="22" rx="4" fill="${P}"/>
+    </g>`,
+  // Puffy down blanket, rolled at one end
+  blanket: `
+    <path fill="${P}" d="M14 30h52v50H22a8 8 0 0 1-8-8z"/>
+    <g stroke="${F}" stroke-width="3" opacity=".6"><path d="M14 46h52M14 62h52"/></g>
+    <circle cx="70" cy="55" r="22" fill="${F}"/>
+    <circle cx="70" cy="55" r="13" fill="${P}"/>
+    <circle cx="70" cy="55" r="5" fill="${C}"/>`,
+  // Kettle-style portable charcoal grill
+  grill: `
+    <path fill="${F}" d="M14 40h68a34 22 0 0 1-68 0z"/>
+    <path fill="${P}" d="M18 36a30 22 0 0 1 60 0z"/>
+    <rect x="42" y="10" width="12" height="6" rx="3" fill="${C}"/><rect x="46" y="14" width="4" height="4" fill="${F}"/>
+    <rect x="12" y="35" width="72" height="6" rx="3" fill="${K}"/>
+    <path d="M30 58l-8 26M66 58l8 26M48 62v22" fill="none" stroke="${F}" stroke-width="4" stroke-linecap="round"/>`,
+  // Cast iron skillet seen from above with a long handle
+  skillet: `
+    <rect x="58" y="44" width="36" height="10" rx="5" fill="${F}" transform="rotate(-20 58 49)"/>
+    <circle cx="38" cy="54" r="30" fill="${F}"/>
+    <circle cx="38" cy="54" r="23" fill="${P}"/>
+    <ellipse cx="32" cy="50" rx="9" ry="7" fill="${K}"/>
+    <circle cx="32" cy="50" r="4" fill="${C}"/>
+    <ellipse cx="46" cy="62" rx="6" ry="5" fill="${K}"/>`,
+  // Insulated tumbler with a lid
+  tumbler: `
+    <path fill="${F}" d="M26 26h44l-5 58a4 4 0 0 1-4 4H35a4 4 0 0 1-4-4z"/>
+    <rect x="22" y="16" width="52" height="12" rx="4" fill="${P}"/>
+    <rect x="52" y="19" width="12" height="4" rx="2" fill="${F}"/>
+    <rect x="30" y="50" width="36" height="12" fill="${C}"/>`,
+  // Folding pocket knife, opened
+  knife: `
+    <path fill="${K}" stroke="${F}" stroke-width="3" stroke-linejoin="round" d="M48 50L82 18c4 8 2 20-10 30L56 58z"/>
+    <rect x="12" y="50" width="48" height="16" rx="8" fill="${F}" transform="rotate(-30 36 58)"/>
+    <circle cx="50" cy="52" r="3.5" fill="${C}"/>
+    <rect x="18" y="66" width="16" height="4" rx="2" fill="${P}" transform="rotate(-30 26 68)"/>`,
+  // Rectangular Bluetooth speaker
+  speaker: `
+    <rect x="8" y="30" width="80" height="42" rx="12" fill="${F}"/>
+    <circle cx="30" cy="51" r="13" fill="${P}"/><circle cx="30" cy="51" r="5" fill="${K}"/>
+    <circle cx="66" cy="51" r="13" fill="${P}"/><circle cx="66" cy="51" r="5" fill="${K}"/>
+    <rect x="42" y="24" width="12" height="6" rx="2" fill="${C}"/>
+    <path d="M90 40c4 6 4 16 0 22" fill="none" stroke="${C}" stroke-width="3" stroke-linecap="round"/>`,
 } as const;
 
 export type ProductIconName = keyof typeof PRODUCT_ICONS;
