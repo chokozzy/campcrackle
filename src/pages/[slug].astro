@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Post from '../layouts/Post.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 import { getPosts } from '../lib/posts';
 
 export async function getStaticPaths() {
@@ -8,6 +9,17 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+
+// Section photos from the frontmatter, keyed by the id of their h2 (read by SectionHeading).
+const h2s = headings.filter((h) => h.depth === 2);
+Astro.locals.sectionImages = Object.fromEntries(
+  (post.data.sections ?? []).map((s) => {
+    const heading = h2s.find((h) => h.text === s.heading);
+    if (!heading) throw new Error(`Post "${post.id}": section "${s.heading}" does not match any ## heading`);
+    return [heading.slug, s];
+  }),
+);
+Astro.locals.pinDescription = post.data.title;
 ---
-<Post frontmatter={post.data}><Content /></Post>
+<Post frontmatter={post.data}><Content components={{ h2: SectionHeading }} /></Post>
